@@ -10,7 +10,7 @@ extern char **environ;
 #define MAX_INPUT_LENGTH 1024
 #define MAX_ARGS 64
 
-char *read_input(char *input);
+char *read_input();
 void parse_input(char *input, char **args);
 int execute_command(char **args);
 void handle_cd(char **args);
@@ -19,14 +19,15 @@ void run_advanced_task(char **args, char **av, int count);
 char *find_executable(char *command);
 
 int main(int argc, char **argv) {
-    char input[MAX_INPUT_LENGTH];
+    char *input;
     char *args[MAX_ARGS];
     int command_count = 0;
 
     (void)argc;
     while (1) {
         printf("($) ");
-        if (read_input(input) == NULL) {
+	input = read_input();
+        if (input == NULL) {
             printf("\n");
             break;
         }
@@ -47,13 +48,20 @@ int main(int argc, char **argv) {
     return 0;
 }
 
-char *read_input(char *input) {
-    if (fgets(input, MAX_INPUT_LENGTH, stdin) == NULL) {
-        return NULL;
-    }
-    input[strcspn(input, "\n")] = '\0'; 
-    return input;
+char *read_input()
+{
+	char *input = NULL;
+	size_t input_size = 0;
+	ssize_t read = getline(&input, &input_size, stdin);
+	if (read == -1)
+	{
+		free(input);
+		return NULL;
+	}
+	input[strcspn(input, "\n")] = '\0';
+	return (input);
 }
+
 
 void parse_input(char *input, char **args) {
     char *token;
