@@ -12,12 +12,15 @@ extern char **environ;
 
 #define MAX_ARGS 64
 
-char *read_input();
+char *read_input(void);
 void parse_input(char *input, char **args);
 int execute_command(char **args);
 void handle_cd(char **args);
 void handle_exit(char **args);
 void error_handler(char **args, char **av, int count);
 char *find_executable(char *command);
+void update_pwd_var(void);
+void handle_setenv(char **args);
+void handle_unsetenv(char **args);
 
 #endif

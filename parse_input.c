@@ -14,6 +14,8 @@ void parse_input(char *input, char **args)
 	token = strtok(input, " ");
 	while (token != NULL)
 	{
+		if (token[0] == '#')
+			break;
 		args[i++] = token;
 		token = strtok(NULL, " ");
 	}

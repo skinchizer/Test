@@ -5,7 +5,7 @@
  * Return: the command after getting read
  */
 
-char *read_input()
+char *read_input(void)
 {
 	char *input = NULL;
 	size_t input_size = 0;

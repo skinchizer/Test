@@ -7,13 +7,12 @@
  * Return: always 0
  */
 
-int main(int argc, char **argv)
+int main(int argc __attribute__((unused)), char **argv)
 {
 	char *input;
 	char *args[MAX_ARGS];
 	int command_count = 0;
 
-	(void)argc;
 	while (1)
 	{
 		printf("($) ");
@@ -34,6 +33,14 @@ int main(int argc, char **argv)
 			else if (strcmp(args[0], "exit") == 0)
 			{
 				handle_exit(args);
+			}
+			else if (strcmp(args[0], "setenv") == 0)
+			{
+				handle_setenv(args);
+			}
+			else if (strcmp(args[0], "unsetenv") == 0)
+			{
+				handle_unsetenv(args);
 			}
 			else
 			{
