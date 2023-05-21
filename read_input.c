@@ -12,9 +12,9 @@ char *read_input(void)
 	ssize_t read;
 
 	if (isatty(fileno(stdin)))
-        {
-            printf("($) ");
-        }
+	{
+		printf("($) ");
+	}
 	read = getline(&input, &input_size, stdin);
 	if (read == -1)
 	{
