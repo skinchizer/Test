@@ -59,12 +59,14 @@ void handle_exit(char **args)
 	}
 }
 /**
- * update_pwd_env_variable - updates the PWD environment variable
+ * update_pwd_var - updates the PWD environment variable
+ *
  */
 
 void update_pwd_var(void)
 {
 	char *pwd = getcwd(NULL, 0);
+
 	if (pwd == NULL)
 	{
 		perror("getcwd");

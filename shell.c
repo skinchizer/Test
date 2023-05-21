@@ -15,11 +15,9 @@ int main(int argc __attribute__((unused)), char **argv)
 
 	while (1)
 	{
-		printf("($) ");
 		input = read_input();
 		if (input == NULL)
 		{
-			printf("\n");
 			break;
 		}
 		parse_input(input, args);
@@ -47,6 +45,7 @@ int main(int argc __attribute__((unused)), char **argv)
 				error_handler(args, argv, command_count);
 			}
 		}
+		free(input);
 	}
 	return (0);
 }
