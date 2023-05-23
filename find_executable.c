@@ -24,7 +24,9 @@ char *find_executable(char *command)
 	{
 		char *executable = (char *)malloc(strlen(dir) + strlen(command) + 2);
 
-		sprintf(executable, "%s/%s", dir, command);
+		strcpy(executable, dir);
+		strcat(executable, "/");
+		strcat(executable, command);
 		if (access(executable, X_OK) == 0)
 		{
 			free(path_copy);
