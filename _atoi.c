@@ -10,7 +10,7 @@ int _atoi(const char *str)
 	int sign = 1;
 	unsigned int result = 0;
 
-	while (str != '\0')
+	while (*str != '\0')
 	{
 		if (*str == '-')
 		{
