@@ -52,7 +52,7 @@ void handle_exit(char **args)
 {
 	if (args[1] != NULL)
 	{
-		exit(atoi(args[1]));
+		exit(_atoi(args[1]));
 	}
 	else
 	{
