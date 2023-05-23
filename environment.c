@@ -6,19 +6,19 @@
  * Return: address from environ
  */
 
-char* _getenv(const char* name)
+char *_getenv(const char  *name)
 {
 	size_t nameLen = strlen(name);
 	int i;
 
 	if (name == NULL || environ == NULL)
-		return NULL;
+		return (NULL);
 	for (i = 0; environ[i] != NULL; ++i)
 	{
 		if (strncmp(name, environ[i], nameLen) == 0 && environ[i][nameLen] == '=')
 		{
-			return environ[i] + nameLen + 1; 
+			return (environ[i] + nameLen + 1);
 		}
 	}
-	return NULL; 
+	return (NULL);
 }
