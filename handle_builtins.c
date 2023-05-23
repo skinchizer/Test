@@ -11,22 +11,23 @@ void handle_cd(char **args)
 
 	if (args[1] == NULL || strcmp(args[1], "~") == 0)
 	{
-		dir = getenv("HOME");
+		dir = _getenv("HOME");
 		if (dir == NULL)
 		{
-			fprintf(stderr, "cd: HOME not set\n");
+			perror("cd");
 			return;
 		}
 	}
 	else if (strcmp(args[1], "-") == 0)
 	{
-		dir = getenv("OLDPWD");
+		dir = _getenv("OLDPWD");
 		if (dir == NULL)
 		{
-			fprintf(stderr, "cd: OLDPWD not set\n");
+			perror("cd");
 			return;
 		}
-		printf("%s\n", dir);
+		write(STDOUT_FILENO, dir, strlen(dir));
+		write(STDOUT_FILENO, "\n",1); 
 	}
 	else
 	{
@@ -87,12 +88,12 @@ void handle_setenv(char **args)
 {
 	if (args[1] == NULL || args[2] == NULL)
 	{
-		fprintf(stderr, "setenv: Invalid syntax\n");
+		perror("setenv");
 		return;
 	}
 	if (setenv(args[1], args[2], 1) != 0)
 	{
-		fprintf(stderr, "setenv: Failed to set environment variable\n");
+		perror("setenv");
 	}
 }
 
@@ -105,11 +106,11 @@ void handle_unsetenv(char **args)
 {
 	if (args[1] == NULL)
 	{
-		fprintf(stderr, "unsetenv: Invalid syntax\n");
+		perror("unsetenv");
 		return;
 	}
 	if (unsetenv(args[1]) != 0)
 	{
-		fprintf(stderr, "unsetenv: Failed to unset environment variable\n");
+		perror("unsetenv");
 	}
 }
