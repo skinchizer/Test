@@ -19,5 +19,7 @@ void error_handler(char **args, char **av, int count)
 	else
 	{
 		fprintf(stderr, "%s: %d: %s: not found\n", av[0], count, args[0]);
+		free(executable);
+		return;
 	}
 }

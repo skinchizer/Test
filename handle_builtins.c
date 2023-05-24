@@ -71,6 +71,7 @@ void update_pwd_var(void)
 	if (pwd == NULL)
 	{
 		perror("getcwd");
+		free(pwd);
 		return;
 	}
 	if (setenv("PWD", pwd, 1) != 0)

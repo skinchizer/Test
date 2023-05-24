@@ -14,7 +14,7 @@ int execute_command(char **args)
 	if (pid == 0)
 	{
 		execve(args[0], args, environ);
-		perror("Error executing command");
+		perror("error executing command");
 		exit(EXIT_FAILURE);
 	}
 	else if (pid < 0)

@@ -18,6 +18,7 @@ int main(int argc __attribute__((unused)), char **argv)
 		input = read_input();
 		if (input == NULL)
 		{
+			free(input);
 			break;
 		}
 		parse_input(input, args);
