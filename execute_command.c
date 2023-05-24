@@ -6,14 +6,14 @@
  * Return: returns 1 on success
  */
 
-int execute_command(char **args)
+int execute_command(char **args, char **env)
 {
 	pid_t pid = fork();
 	int status;
 
 	if (pid == 0)
 	{
-		execve(args[0], args, environ);
+		execve(args[0], args, env);
 		perror("exceve");
 		exit(EXIT_FAILURE);
 	}

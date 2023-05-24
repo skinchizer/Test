@@ -7,7 +7,7 @@
  * Return: always 0
  */
 
-int main(int argc __attribute__((unused)), char **argv)
+int main(int argc __attribute__((unused)), char **argv, char **env)
 {
 	char *input;
 	char *args[MAX_ARGS];
@@ -31,19 +31,15 @@ int main(int argc __attribute__((unused)), char **argv)
 			}
 			else if (strcmp(args[0], "exit") == 0)
 			{
-				handle_exit(args);
+				handle_exit(args, input);
 			}
-			else if (strcmp(args[0], "setenv") == 0)
+			else if (strcmp(args[0], "env") == 0)
 			{
-				handle_setenv(args);
-			}
-			else if (strcmp(args[0], "unsetenv") == 0)
-			{
-				handle_unsetenv(args);
+				_getenvir(env);
 			}
 			else
 			{
-				error_handler(args, argv, command_count);
+				error_handler(args, argv, command_count, env);
 			}
 		}
 		free(input);

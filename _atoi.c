@@ -2,29 +2,36 @@
 
 /**
  * _atoi - convert str to int
- * @str: input string
+ * @s: input string
  * Return: number after conversion
  */
-int _atoi(const char *str)
+int _atoi(char *s)
 {
-	int sign = 1;
+	int i, sign = 1, flag = 0, output;
 	unsigned int result = 0;
 
-	while (*str != '\0')
+	for (i = 0; s[i] != '\0' && flag != 2; i++)
 	{
-		if (*str == '-')
-		{
+		if (s[i] == '-')
 			sign *= -1;
-		}
-		else if (*str >= '0' && *str <= '9')
+		if (s[i] >= '0' && s[i] <= '9')
 		{
-			result = result * 10 + (*str - '0');
-														
+			flag = 1;
+			result *= 10;
+			result += (s[i] - '0');
 		}
-		else															{
-			break;
+		else if (flag == 1)
+		{
+			flag = 2;
 		}
-		str++;
+		if (sign == -1)
+		{
+			output = -result;
+		}
+		else
+		{
+			output = result;
+		}
 	}
-	return (sign * result);
+		return (output);
 }

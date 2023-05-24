@@ -14,15 +14,15 @@ extern char **environ;
 
 char *read_input(void);
 void parse_input(char *input, char **args);
-int execute_command(char **args);
+int execute_command(char **args, char **env);
 void handle_cd(char **args);
-void handle_exit(char **args);
-void error_handler(char **args, char **av, int count);
+void handle_exit(char **args, char *input);
+void error_handler(char **args, char **av, int count, char **env);
 char *find_executable(char *command);
 void update_pwd_var(void);
-void handle_setenv(char **args);
-void handle_unsetenv(char **args);
 char* _getenv(const char* name);
-int _atoi(const char *str);
+int _atoi(char *s);
+void free_tokens(char **tokens);
+void _getenvir(char **env);
 
 #endif

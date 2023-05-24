@@ -48,14 +48,16 @@ void handle_cd(char **args)
  * @args: cmd and args
  */
 
-void handle_exit(char **args)
+void handle_exit(char **args, char *input)
 {
 	if (args[1] != NULL)
 	{
-		exit(_atoi(args[1]));
+		free(input);
+		exit(atoi(args[1]));
 	}
 	else
 	{
+		free(input);
 		exit(0);
 	}
 }
@@ -81,37 +83,36 @@ void update_pwd_var(void)
 	free(pwd);
 }
 /**
- * handle_setenv - handles setenv builtin
- * @args: cmd and args
+ * free_tokens - frees tokens
+ * @tokens: array of tokens
  */
-
-void handle_setenv(char **args)
+void free_tokens(char **tokens)
 {
-	if (args[1] == NULL || args[2] == NULL)
-	{
-		perror("setenv");
+	int i = 0;
+
+	if (tokens == NULL)
 		return;
-	}
-	if (setenv(args[1], args[2], 1) != 0)
+	while (tokens[i] != NULL)
 	{
-		perror("setenv");
+		free(tokens[i]);
+		i++;
 	}
+	free(tokens);
 }
-
 /**
- * handle_unsetenv - handles unsetenv builtin
- * @args: cmd and args
- */
+ *  *_getenvir - gets the env variable.
+ *   *@env: env variable
+ *    *Return: 0
+ *     */
 
-void handle_unsetenv(char **args)
+void _getenvir(char **env)
 {
-	if (args[1] == NULL)
+	size_t env_v = 0;
+
+	while (env[env_v])
 	{
-		perror("unsetenv");
-		return;
-	}
-	if (unsetenv(args[1]) != 0)
-	{
-		perror("unsetenv");
+		write(STDOUT_FILENO, env[env_v], strlen(env[env_v]));
+		write(STDOUT_FILENO, "\n", 1);
+		env_v++;
 	}
 }

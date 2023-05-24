@@ -6,14 +6,14 @@
  * @count: command counter
  */
 
-void error_handler(char **args, char **av, int count)
+void error_handler(char **args, char **av, int count, char **env)
 {
 	char *executable = find_executable(args[0]);
 
 	if (executable != NULL)
 	{
 		args[0] = executable;
-		execute_command(args);
+		execute_command(args, env);
 	}
 	else
 	{
