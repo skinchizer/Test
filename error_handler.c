@@ -1,5 +1,4 @@
 #include "shell.h"
-
 /**
  * error_handler - handles errors
  * @args: cmd and args

@@ -15,7 +15,10 @@ char *find_executable(char *command)
 	if (command[0] == '/')
 	{
 		if (access(command, X_OK) == 0)
+		{
+			free(path_copy);
 			return (command);
+		}
 		return (NULL);
 	}
 	if (path == NULL)
