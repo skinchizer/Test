@@ -19,10 +19,14 @@ char *find_executable(char *command)
 			free(path_copy);
 			return (command);
 		}
+		free(path_copy);
 		return (NULL);
 	}
 	if (path == NULL)
+	{
+		free(path_copy);
 		return (NULL);
+	}
 	while (dir != NULL)
 	{
 		char *executable = (char *)malloc(strlen(dir) + strlen(command) + 2);

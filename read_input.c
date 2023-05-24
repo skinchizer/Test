@@ -14,11 +14,13 @@ char *read_input(void)
 	if (isatty(fileno(stdin)))
 	{
 		printf("$ ");
+		fflush(stdout);
 	}
 	read = getline(&input, &input_size, stdin);
 	if (read == -1)
 	{
-		free(input);
+		if (input != NULL)
+			free(input);
 		return (NULL);
 	}
 	input[strcspn(input, "\n")] = '\0';
