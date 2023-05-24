@@ -11,13 +11,13 @@ void parse_input(char *input, char **args)
 	char *token;
 	int i = 0;
 
-	token = strtok(input, " ");
+	token = strtok(input, " \t\n\r");
 	while (token != NULL)
 	{
 		if (token[0] == '#')
 			break;
 		args[i++] = token;
-		token = strtok(NULL, " ");
+		token = strtok(NULL, " \t\n\r");
 	}
 	args[i] = NULL;
 }
